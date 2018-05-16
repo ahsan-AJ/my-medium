@@ -20,7 +20,7 @@ function saveImageToCloudinary(path) {
 
 
 
-addArticle = (req, res, next) => {
+let addArticle = (req, res, next) => {
 
     let { text, title, claps, description } = req.body;
     if (req.files.image) {
@@ -56,7 +56,7 @@ addArticle = (req, res, next) => {
 
 };
 
-getAll = (req, res, next) => {
+let getAll = (req, res, next) => {
     Article.find(req.params.id)
         .populate('author')
         .populate('comment.author')
@@ -66,7 +66,7 @@ getAll = (req, res, next) => {
         })
 }
 
-clapArticle = (req, res, next) => {
+let clapArticle = (req, res, next) => {
     Article.findById(req.body.article_id).then((article) => {
         return article.clap().then(() => {
             res.status(200).json({ success: true, message: 'clapped' });
@@ -81,7 +81,7 @@ clapArticle = (req, res, next) => {
 
 }
 
-commentArticle = (req, res, next) => {
+let commentArticle = (req, res, next) => {
     Article.findById(req.body.article_id).then((article) => {
         return article.comment({
             author: req.body.author_id,
@@ -96,7 +96,7 @@ commentArticle = (req, res, next) => {
     })
 }
 
-getArticle = (req, res, next) => {
+let getArticle = (req, res, next) => {
     Article.findById(req.params.id)
         .populate('author')
         .populate('comment.author')

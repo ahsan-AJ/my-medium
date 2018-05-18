@@ -25,6 +25,14 @@ export default (state = initialState, action) => {
                 ...state,
                 article: article
             }
+        case 'COMMENT_ARTICLE':
+            let article = Object.assign({}, state.article)
+            article.comments.push(action.comment)
+            console.log(article);
+            return {
+                ...state,
+                article: article
+            }
         default:
             return state
     }

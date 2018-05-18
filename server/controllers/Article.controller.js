@@ -87,7 +87,7 @@ let commentArticle = (req, res, next) => {
             author: req.body.author_id,
             text: req.body.comment
         }).then(() => {
-            res.status(200).json({ success: true, message: 'clapped' });
+            res.status(200).json({ success: true, message: 'message added' });
             next();
         }).catch((error) => {
             res.status(401).json({ success: false, message: 'Error saving comment', error: error });
